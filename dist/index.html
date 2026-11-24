@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#183a32">
+  <meta name="description" content="古語を調べ、ことばを訳し、俳句・川柳・短歌を詠む。詳しい語釈、活用、読み上げと自由な手書き黒板を備えた葛西書店の古語学習辞典。">
+  <meta property="og:title" content="古語辞典｜葛西書店">
+  <meta property="og:description" content="ことばをひらく。千年の心にふれる。黒板とチョークで学ぶ古語と詩歌。">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <title>古語辞典｜葛西書店</title>
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ</a>
+  <div class="board-frame">
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="古語辞典 葛西書店 ホーム"><span class="brand-seal">葛</span><span class="brand-name">古語辞典<span class="brand-publisher">葛西書店</span></span></a>
+      <nav class="main-nav" aria-label="メインメニュー">
+        <button aria-label="ホーム" data-page="home" class="active"><span data-icon="home"></span><span data-short="ホーム">ホーム</span></button>
+        <button aria-label="辞典をひく" data-page="dictionary"><span data-icon="book"></span><span data-short="辞典">辞典をひく</span></button>
+        <button aria-label="訳す・解説" data-page="translate"><span data-icon="translate"></span><span data-short="訳す">訳す・解説</span></button>
+        <button aria-label="俳句・短歌" data-page="poetry"><span data-icon="leaf"></span><span data-short="創作">俳句・短歌</span></button>
+        <button aria-label="黒板ノート" data-page="notebook"><span data-icon="pen"></span><span data-short="黒板">黒板ノート</span></button>
+      </nav>
+      <div class="header-actions"><button class="icon-button" data-action="favorites" aria-label="しおりを開く" title="しおり"><span data-icon="bookmark"></span><i id="bookmark-count" hidden>0</i></button><button class="icon-button" data-action="settings" aria-label="設定" title="設定"><span data-icon="settings"></span></button></div>
+    </header>
+    <div class="workspace">
+      <aside class="sidebar" id="sidebar">
+        <p class="eyebrow">ことばと向き合う時間</p>
+        <h2 class="chalk">学びの引き出し</h2>
+        <button data-page="dictionary" class="side-link"><span data-icon="book"></span>すべての古語<span class="tiny-count" id="entry-count">…</span></button>
+        <button data-action="favorites" class="side-link"><span data-icon="bookmark"></span>しおりを挟んだことば</button>
+        <button data-page="translate" class="side-link"><span data-icon="translate"></span>ことばの翻訳・解説</button>
+        <button data-page="poetry" class="side-link"><span data-icon="leaf"></span>俳句・川柳・短歌</button>
+        <button data-page="notebook" class="side-link"><span data-icon="pen"></span>自由に書く黒板</button>
+        <div class="chalk-divider"></div>
+        <div class="sidebar-label"><span data-icon="clock"></span>最近ひいたことば</div>
+        <div id="recent-words" class="recent-words"></div>
+        <div class="season-note"><span class="season-flower">✳</span><p class="eyebrow">季節のことば</p><button data-word="あはれ" class="chalk season-word">あはれ</button><p>心が動いた、その瞬間を<br>ことばにしてみませんか。</p><button class="text-button" data-page="poetry">句を詠んでみる <span data-icon="pen"></span></button></div>
+        <button data-action="about" class="about-link"><span data-icon="info"></span>収録内容・この辞典について</button>
+        <p class="edition">葛西書店 オリジナル学習版<br>2026.11.25</p>
+      </aside>
+      <main id="main" tabindex="-1"><div class="loading-state"><span class="chalk">古語辞典</span><p>ことばの引き出しを開いています…</p></div></main>
+    </div>
+    <div class="chalk-tray" aria-hidden="true"><span class="chalk-stick white"></span><span class="chalk-stick yellow"></span><span class="chalk-stick coral"></span><span class="board-eraser"></span></div>
+  </div>
+  <section class="audio-player" aria-label="読み上げプレーヤー">
+    <div class="audio-caption"><span class="audio-mark" data-icon="headphones"></span><div><strong id="audio-title">ことばを、耳から。</strong><span id="audio-status" aria-live="polite">読んでいるページを読み上げます</span></div></div>
+    <div class="audio-controls"><button class="icon-button" id="audio-prev" aria-label="前の項目"><span data-icon="previous"></span></button><button class="audio-play" id="audio-play" aria-label="読み上げを開始"><span data-icon="play"></span></button><button class="icon-button" id="audio-next" aria-label="次の項目"><span data-icon="next"></span></button><button class="icon-button" id="audio-stop" aria-label="読み上げを停止"><span data-icon="stop"></span></button></div>
+    <div class="audio-options"><button class="audio-toggle" id="audio-continuous" aria-pressed="false" title="検索結果またはしおりを順に再生"><span data-icon="list"></span><span>連続</span></button><button class="audio-toggle" id="audio-loop" aria-pressed="false"><span data-icon="repeat"></span><span>ループ</span></button><label class="speed-label"><span class="sr-only">読み上げ速度</span><select id="audio-speed"><option value="0.7">0.7 倍</option><option value="0.85">0.85 倍</option><option value="1" selected>1.0 倍</option><option value="1.2">1.2 倍</option><option value="1.5">1.5 倍</option></select></label><button class="icon-button" data-action="settings" aria-label="音声設定"><span data-icon="sliders"></span></button></div>
+  </section>
+  <dialog id="modal"><div class="modal-heading"><h2 id="modal-title" class="chalk"></h2><button class="icon-button" id="modal-close" aria-label="閉じる"><span data-icon="close"></span></button></div><div id="modal-body"></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <noscript><p class="noscript">辞典の検索や手書き機能にはJavaScriptを有効にしてください。</p></noscript>
+</body>
+</html>

@@ -1,0 +1,6 @@
+node_modules/
+.sites-runtime/
+*.tar.gz
+*.tgz
+.DS_Store
+dist/assets/Yomogi-Regular.ttf
